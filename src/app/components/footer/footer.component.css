@@ -1,0 +1,27 @@
+h4,a{
+    color: #fff;
+}
+
+a{
+    display: flex;
+}
+
+h4{
+    margin: 0;
+}
+
+.fa-whatsapp{
+    color: #25D366;
+}
+
+.fa-instagram{
+    color: #C13584;
+}
+
+.fa-facebook{
+    color: #3b5998
+}
+
+.fa-envelope{
+    color: #2f55a4;
+}

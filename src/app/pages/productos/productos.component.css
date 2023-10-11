@@ -1,0 +1,23 @@
+h1,h4,h5{
+    color: #fff;
+}
+
+.col-md-4{
+    border-right: 1px solid #fff;
+}
+
+mat-icon{
+    cursor: pointer;
+}
+
+.edit{
+    color: grey;
+}
+
+.delete{
+    color: lightcoral;
+}
+
+.add{
+    color: var(--verde);
+}

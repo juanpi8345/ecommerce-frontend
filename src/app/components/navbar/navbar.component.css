@@ -1,0 +1,36 @@
+a {
+    color: #fff !important;
+    transition: color .2s ease;
+}
+
+
+header nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+img {
+    transition: all .6s ease;
+    cursor: pointer;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+a:hover {
+    color: #35b6b6 !important;
+
+}
+
+mat-icon {
+    color: #fff;
+}
+
+h1,h6{
+    color: #fff;
+    margin-bottom: 0 !important;
+}
