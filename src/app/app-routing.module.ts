@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { AgregarProductoComponent } from './pages/agregar-producto/agregar-producto.component';
 import { EditarProductoComponent } from './pages/editar-producto/editar-producto.component';
+import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
 
 const routes: Routes = [
   {path: '', redirectTo:"nosotros", pathMatch:'full'},
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'productos',component:ProductosComponent},
   {path:'agregar-producto',component:AgregarProductoComponent},
   {path:'editar-producto/:codigo',component:EditarProductoComponent},
+  {path:'ver-producto/:codigo',component:VerProductoComponent},
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 

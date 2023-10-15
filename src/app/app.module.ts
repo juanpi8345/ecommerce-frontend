@@ -20,6 +20,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { AgregarProductoComponent } from './pages/agregar-producto/agregar-producto.component';
 import { EditarProductoComponent } from './pages/editar-producto/editar-producto.component';
+import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
 
 
 
@@ -32,6 +33,7 @@ import { EditarProductoComponent } from './pages/editar-producto/editar-producto
     ProductosComponent,
     AgregarProductoComponent,
     EditarProductoComponent,
+    VerProductoComponent,
   ],
   imports: [
     BrowserModule,
