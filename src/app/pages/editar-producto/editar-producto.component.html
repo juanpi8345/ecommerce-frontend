@@ -1,9 +1,9 @@
 <div class="container mt-4 aparecer pb-2">
     <div class="d-flex align-items-center justify-content-between">
-        <h1>Agregar producto</h1>
+        <h1>Editar producto</h1>
         <a routerLink="/productos">Volver</a>
     </div>
-    <form (ngSubmit)="agregarProducto()">
+    <form (ngSubmit)="editarProducto()">
         <div class="row mt-4">
             <div class="col-md-6">
                 <mat-form-field class="w-100">
@@ -39,7 +39,7 @@
                        <mat-option value="m">M</mat-option>
                        <mat-option value="l">L</mat-option>
                        <mat-option value="xl">XL</mat-option>
-                       <mat-option value="consultar">Consulta</mat-option>
+                       <mat-option>Consulta</mat-option>
                    </mat-select>
                 </mat-form-field>
             </div> 
@@ -54,7 +54,7 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-4">
-                <button type="submit" class="btn btn-verde">Agregar producto</button>
+                <button type="submit" class="btn btn-verde">Editar producto</button>
                 <a class="btn btn-outline-verde ms-2" (click)="limpiarCampos()">Limpiar campos</a>
             </div>
         </div>

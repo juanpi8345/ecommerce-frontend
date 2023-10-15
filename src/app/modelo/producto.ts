@@ -3,6 +3,7 @@ export class Producto {
     name : string;
     size : string;
     price : number;
+    description:string;
     stock:number;
     imgUrl: string;
 }
