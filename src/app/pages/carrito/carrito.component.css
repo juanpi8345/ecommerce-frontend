@@ -1,0 +1,27 @@
+h1{
+    color: #fff;
+}
+
+mat-icon{
+    cursor: pointer;
+    color: rgb(203, 50, 52);
+}
+
+mat-card h1{
+    color: #000;
+}
+
+span{
+    color: var(--verde);
+}
+
+p{
+    font-style: italic;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+mat-slide-toggle span{
+    color: #fff;
+}

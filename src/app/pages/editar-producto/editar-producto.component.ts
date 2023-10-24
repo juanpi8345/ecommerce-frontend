@@ -11,12 +11,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar-producto.component.css']
 })
 export class EditarProductoComponent {
-
-  constructor(private productoService:ProductosService, private router:Router, private route:ActivatedRoute
-    ,private snack:MatSnackBar){}
-
   producto:Producto = new Producto();
   code:number;
+
+  constructor(private productoService:ProductosService, private router:Router, private route:ActivatedRoute
+    ,private snack:MatSnackBar){
+      this.producto.size = "S"
+    }
+
+ 
 
   ngOnInit():void{
     this.code = this.route.snapshot.params['codigo'];

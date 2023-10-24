@@ -8,11 +8,11 @@
             <div class="d-flex align-items-center">
                 <a href="" routerLink="nosotros">Nosotros</a>
                 <a href="" class="ms-2" routerLink="productos">Productos</a>
-                <a href="" class="ms-2">Contacto</a>
-                <button class="btn-verde btn ms-4">Ingresar</button>
+                <a href="" class="ms-2" routerLink="contacto">Contacto</a>
+                <button class="btn-verde btn ms-4" routerLink="/login">Ingresar</button>
                 <div class="d-flex align-items-end">
-                    <img src="../../../assets/img/carrito-de-compras.png" alt="" class="ms-3" width= "40px">
-                    <h6 class="ms-1">2</h6>
+                    <img src="../../../assets/img/carrito-de-compras.png" alt="" class="ms-4" width= "40px" routerLink="/carrito">
+                    <h6 class="ms-1">{{obtenerTamanioCarrito()}}</h6>
                 </div>
             </div>
         </div>

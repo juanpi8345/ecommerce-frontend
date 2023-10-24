@@ -1,4 +1,4 @@
-<div class="container mt-4 mb-5">
+<div class="container mt-4 mb-5 aparecer">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mt-5 mb-5">{{producto.name}}</h1>
         <a routerLink="/productos">Volver</a>
@@ -11,15 +11,15 @@
             <h1 class="mt-4">Nombre: {{producto.name}}</h1>
             <h4 class="mt-4">Precio: {{producto.price}}$</h4>
             <p class="mt-4">{{producto.description}}</p>
-            <h5 class="mt-4">Unidades disponibles: {{producto.stock}}</h5>
+            <h5 class="mt-4">Unidades disponibles: {{producto.stock - obtenerStockContandoCarrito(producto.code)}} </h5>
             <h6 class="mt-4">Talla: {{producto.size}}</h6>
-            <button class="btn-verde btn mt-2" [disabled]="producto.stock == 0">Añadir al carrito</button>
+            <button class="btn-verde btn mt-2" [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) == 0" (click)="agregarProductoCarrito(producto)">Añadir al carrito</button>
         </div>
     </div>
     <div class="row mt-5 d-flex justify-content-center">
         <h1 class="text-center">¿Quiere realizar una consulta?</h1>
         <div class="d-flex justify-content-center mt-2 mb-5">
-            <button class="btn btn-outline-verde">Contactenos aqui</button>
+            <button class="btn btn-outline-verde" routerLink="/contacto">Contactenos aqui</button>
         </div>
     </div>
 </div>

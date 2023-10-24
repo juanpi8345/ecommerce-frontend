@@ -11,37 +11,38 @@ import Swal from 'sweetalert2';
 })
 export class ProductosComponent {
 
-  productos : Producto[];
-  ordenamiento:string = null;
-  query:string = '';
-  numeros:number[] = [1,2,3,4,5,6,7,8,9,10];
+  productos: Producto[];
+  ordenamiento: string = "name";
+  query: string = '';
+  numeros: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor(private productosService:ProductosService, private snack:MatSnackBar){}
+  constructor(private productosService: ProductosService, private snack: MatSnackBar) {
+    
+   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.obtenerProductos(0);
   }
 
-  public obtenerProductos(page:Optional){
-    console.log(this.ordenamiento);
-    this.productosService.obtenerProductos(page,this.ordenamiento).subscribe((productos:any)=>{
+  public obtenerProductos(page: Optional) {
+    this.productosService.obtenerProductos(page, this.ordenamiento).subscribe((productos: any) => {
       this.productos = productos.content;
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  public buscarProductos(){
-    if(this.query == '' || this.query == undefined || this.query == null){
+  public buscarProductos() {
+    if (this.query == '' || this.query == undefined || this.query == null) {
       this.obtenerProductos(0);
       return;
     }
-    this.productosService.buscarProductos(this.query).subscribe((productos:Producto[])=>{
+    this.productosService.buscarProductos(this.query).subscribe((productos: Producto[]) => {
       this.productos = productos;
     })
   }
 
-  public eliminarProducto(codigo:number){
+  public eliminarProducto(codigo: number) {
     Swal.fire({
       title: 'Eliminar producto',
       inputPlaceholder: '¿Estas seguro que queres eliminar el producto?',
@@ -50,17 +51,50 @@ export class ProductosComponent {
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#13c2c2'
     }).then((result) => {
-      if(result.isConfirmed) {
-        this.productosService.eliminarProducto(codigo).subscribe(()=>{
-          this.snack.open("Producto eliminado","Aceptar",{
-            duration:3000
+      if (result.isConfirmed) {
+        this.productosService.eliminarProducto(codigo).subscribe(() => {
+          this.snack.open("Producto eliminado", "Aceptar", {
+            duration: 3000
           })
           this.obtenerProductos(0);
-        },err=>{
+        }, err => {
           console.log(err);
         });
       }
     });
+  }
+
+  //sessionStorage
+
+  obtenerProductosCarrito() {
+    const productos = JSON.parse(sessionStorage.getItem('productos')) || [];
+    return productos;
+  }
+
+  guardarProductos(productos) {
+    sessionStorage.setItem('productos', JSON.stringify(productos));
+  }
+
+  agregarProductoCarrito(producto:Producto) {
+    const productos = this.obtenerProductosCarrito();
+    productos.push(producto);
+    this.guardarProductos(productos);
+  }
+
+  obtenerTamanioCarrito():number{
+    const productos  =this.obtenerProductosCarrito();
+    return productos.length;
+  }
+
+  obtenerStockContandoCarrito(code:number):number{
+    const productos  =this.obtenerProductosCarrito();
+    let i = 0;
+    for(let producto of productos){
+      if(producto.code == code ){
+        i++;
+      }
+    }
+    return i;
   }
 
 }

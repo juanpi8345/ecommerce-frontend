@@ -12,9 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class AgregarProductoComponent {
 
-  constructor(private productoService:ProductosService, private router:Router, private snack:MatSnackBar){}
-
   producto:Producto = new Producto();
+
+  constructor(private productoService:ProductosService, private router:Router, private snack:MatSnackBar){
+    this.producto.size = "s"
+  }
+
 
  validarCampos(...campos): boolean {
     for (const campo of campos) {

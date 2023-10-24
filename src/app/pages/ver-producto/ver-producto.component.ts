@@ -20,5 +20,33 @@ export class VerProductoComponent {
     },err=> console.log(err))
   }
 
+  //sessionStorage
+
+  obtenerProductosCarrito() {
+    const productos = JSON.parse(sessionStorage.getItem('productos')) || [];
+    return productos;
+  }
+  
+  guardarProductos(productos) {
+    sessionStorage.setItem('productos', JSON.stringify(productos));
+  }
+
+  agregarProductoCarrito(producto:Producto) {
+    const productos = this.obtenerProductosCarrito();
+    productos.push(producto);
+    this.guardarProductos(productos);
+  }
+
+  obtenerStockContandoCarrito(code:number):number{
+    const productos  =this.obtenerProductosCarrito();
+    let i = 0;
+    for(let producto of productos){
+      if(producto.code == code ){
+        i++;
+      }
+    }
+    return i;
+  }
+
 
 }

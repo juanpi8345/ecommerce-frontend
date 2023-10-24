@@ -9,3 +9,8 @@ a{
 textarea{
     resize: none!important;
 }
+
+mat-label{
+    color: #fff;
+}
+
