@@ -14,7 +14,7 @@
                 <mat-label>Buscar productos</mat-label>
                 <input type="text" matInput  name="query" [(ngModel)]="query" (input)="buscarProductos()">
             </mat-form-field>
-            <mat-icon class="mat-18 add ms-4" routerLink="/agregar-producto">add</mat-icon>
+            <mat-icon class="mat-18 add ms-4" routerLink="/agregar-producto" *ngIf="rol === 'ADMIN'">add</mat-icon>
         </div>
         
     </div>
@@ -23,8 +23,8 @@
             <div class="d-flex justify-content-center align-items-center mt-2 mb-2">
                 <h1>{{producto.name}}</h1>
                 <div *ngIf="true" class="ms-5">
-                    <mat-icon class="mat-18 edit" [routerLink]="'/editar-producto/'+producto.code">edit</mat-icon>
-                    <mat-icon class="ms-2 delete" (click)="eliminarProducto(producto.code)">delete</mat-icon>
+                    <mat-icon class="mat-18 edit" [routerLink]="'/editar-producto/'+producto.code" *ngIf="rol === 'ADMIN'">edit</mat-icon>
+                    <mat-icon class="ms-2 delete" (click)="eliminarProducto(producto.code)"*ngIf="rol === 'ADMIN'">delete</mat-icon>
                 </div>
             </div>
             <img [src]="producto.imgUrl" alt="" height="200" class="p-2">

@@ -1,1 +1,62 @@
-<p>registrarse works!</p>
+<div class="container mt-5 aparecer">
+    <div class="d-flex justify-content-center">
+        <img src="../../../assets/img/nota.png" width="100" alt="">
+    </div>
+    <h1 class="text-center mt-2">Registrarse</h1>
+    <div class="row mt-3 mb-3">
+        <form (ngSubmit)="registrarse()">
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-3">
+                    <mat-form-field class="w-100">
+                        <mat-label>Ingrese su nombre</mat-label>
+                        <input type="text" matInput required name="nombre" [(ngModel)]="usuario.name">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100">
+                        <mat-label>Ingrese su Apellido</mat-label>
+                        <input type="text" matInput required name="apellido" [(ngModel)]="usuario.lastname">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Ingrese su DNI</mat-label>
+                        <input type="number" matInput required name="dni" [(ngModel)]="usuario.dni">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Ingrese su email</mat-label>
+                        <input type="email" matInput required name="email" [(ngModel)]="usuario.email" >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Ingrese la contraseña</mat-label>
+                        <input type="password" matInput required name="clave" [(ngModel)]="usuario.password">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <mat-label>Vuelva a ingresar la contraseña</mat-label>
+                        <input type="password" matInput required name="claveConfirmar" [(ngModel)]="claveConfirmar">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-verde">Registrarse</button>
+            </div>
+        </form>
+    </div>
+    <p class="mt-5 text-center">Registrate para poder realizar compras y hacer un seguimiento!</p>
+    <p class="mt-3 text-center">Ya posees una cuenta? <button class="btn btn-outline-verde ms-2" routerLink="/login">Iniciar sesion</button></p>
+</div>
+

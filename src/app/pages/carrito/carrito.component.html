@@ -28,44 +28,57 @@
     </tbody>
   </table>
   <div class="row mt-4 align-items-center">
-      <form>
-        <mat-slide-toggle (toggleChange)="envioDomicilio = !envioDomicilio"><span class="ms-1">Envio a domicilio</span></mat-slide-toggle>
-        <button class="btn btn-verde ms-5">Registrar compra</button>
-        <div class="row mt-4 aparecer" *ngIf="envioDomicilio">
-          <div class="col-md-3">
-            <mat-form-field class="w-100">
-              <mat-label>Provincia</mat-label>
-              <input type="text" matInput name="provincia">
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="w-100">
-              <mat-label>Localidad</mat-label>
-              <input type="text" matInput name="localidad">
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="w-100">
-              <mat-label>Calle</mat-label>
-              <input type="text" matInput name="calle">
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="w-100">
-              <mat-label>Numero de domicilio</mat-label>
-              <input type="number" matInput name="numero">
-            </mat-form-field>
-          </div>
+    <form>
+      <mat-slide-toggle (toggleChange)="envioDomicilio = !envioDomicilio"><span class="ms-1">Envio a
+          domicilio</span></mat-slide-toggle>
+      <button class="btn btn-verde ms-5">Registrar compra</button>
+      <div class="row mt-4 aparecer" *ngIf="envioDomicilio">
+        <div class="col-md-3">
+          <mat-form-field class="w-100">
+            <mat-label>Provincia</mat-label>
+            <mat-select>
+              <mat-option value="s">Buenos Aires</mat-option>
+              <mat-option value="m">Catamarca</mat-option>
+              <mat-option value="l">Chaco</mat-option>
+              <mat-option value="xl">Chubut</mat-option>
+              <mat-option value="consultar">Cordoba</mat-option>
+              <mat-option value="l">Corrientes</mat-option>
+              <mat-option value="xl">Entre rios</mat-option>
+              <mat-option value="consultar">Formosa</mat-option>
+              <mat-option value="l">Jujuy</mat-option>
+              <mat-option value="xl">La pampa</mat-option>
+              <mat-option value="consultar">La rioja</mat-option>
+              <mat-option value="l">Mendoza</mat-option>
+              <mat-option value="xl">Misiones</mat-option>
+              <mat-option value="consultar">Neuquen</mat-option>
+            </mat-select>
+
+          </mat-form-field>
         </div>
-      </form>
+        <div class="col-md-3">
+          <mat-form-field class="w-100">
+            <mat-label>Localidad</mat-label>
+            <input type="text" matInput name="localidad">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="w-100">
+            <mat-label>Calle</mat-label>
+            <input type="text" matInput name="calle">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field class="w-100">
+            <mat-label>Numero de domicilio</mat-label>
+            <input type="number" matInput name="numero">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="d-flex justify-content-center mt-5">
-    
-      <button class="btn btn-verde" (click)="toggleInstrucciones()">Instrucciones</button>
-   
-
-      <button class="btn btn-outline-verde ms-4" (click)="togglePreguntas()">Preguntas</button>
- 
+    <button class="btn btn-verde" (click)="toggleInstrucciones()">Instrucciones</button>
+    <button class="btn btn-outline-verde ms-4" (click)="togglePreguntas()">Preguntas</button>
   </div>
   <div class="row mt-4 align-items-center justify-content-center">
     <div class="col-md-6 mb-3 aparecer" *ngIf="verInstrucciones">

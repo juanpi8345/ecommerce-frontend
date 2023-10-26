@@ -1,7 +1,9 @@
 import { Component, Optional } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Producto } from 'src/app/modelo/producto';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductosService } from 'src/app/services/productos.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,17 +14,29 @@ import Swal from 'sweetalert2';
 export class ProductosComponent {
 
   productos: Producto[];
+  rol: string;
   ordenamiento: string = "name";
   query: string = '';
   numeros: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor(private productosService: ProductosService, private snack: MatSnackBar) {
-    
-   }
+  constructor(private productosService: ProductosService, private snack: MatSnackBar,
+    private loginService: LoginService, private userService: UserService) {
+
+  }
 
   ngOnInit(): void {
+    if(this.loginService.getUser() != undefined)
+      this.getUserRol();
+  
     this.obtenerProductos(0);
   }
+
+  public getUserRol() {
+    this.userService.obtenerRol(this.loginService.getUser().dni).subscribe((role: any) => {
+      this.rol = role.Role;
+    })
+  }
+
 
   public obtenerProductos(page: Optional) {
     this.productosService.obtenerProductos(page, this.ordenamiento).subscribe((productos: any) => {
@@ -71,26 +85,28 @@ export class ProductosComponent {
     return productos;
   }
 
+  
+
   guardarProductos(productos) {
     sessionStorage.setItem('productos', JSON.stringify(productos));
   }
 
-  agregarProductoCarrito(producto:Producto) {
+  agregarProductoCarrito(producto: Producto) {
     const productos = this.obtenerProductosCarrito();
     productos.push(producto);
     this.guardarProductos(productos);
   }
 
-  obtenerTamanioCarrito():number{
-    const productos  =this.obtenerProductosCarrito();
+  obtenerTamanioCarrito(): number {
+    const productos = this.obtenerProductosCarrito();
     return productos.length;
   }
 
-  obtenerStockContandoCarrito(code:number):number{
-    const productos  =this.obtenerProductosCarrito();
+  obtenerStockContandoCarrito(code: number): number {
+    const productos = this.obtenerProductosCarrito();
     let i = 0;
-    for(let producto of productos){
-      if(producto.code == code ){
+    for (let producto of productos) {
+      if (producto.code == code) {
         i++;
       }
     }
