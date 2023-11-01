@@ -10,6 +10,8 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
+import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
+import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 
 const routes: Routes = [
   {path: '', redirectTo:"nosotros", pathMatch:'full'},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path:'carrito',component:CarritoComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'registrarse',component:RegistrarseComponent},
+  {path:'mis-compras',component:MisComprasComponent,canActivate:[AuthGuard]},
+  {path:'ver-compra/:id',component:VerCompraComponent,canActivate:[AuthGuard]},
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 

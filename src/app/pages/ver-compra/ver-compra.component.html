@@ -1,0 +1,63 @@
+<div class="container mt-4 mb-3 aparecer">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Ver Compra</h1>
+    <a routerLink="/mis-compras">Volver</a>
+  </div>
+  <div class="mt-2">
+    <h5>Dni del usuario: <b>{{compra.user.dni}}</b></h5>
+    <h6 class="mt-3" style="color:#fff">Fecha: <b>{{compra.date}}</b></h6>
+  </div>
+  <table id="tabla" class="table mt-4 p-2 text-center">
+    <thead>
+      <tr>
+        <th scope="col">ID producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of compra.products;">
+        <td>{{producto.code}}</td>
+        <td>{{producto.price}}$</td>
+        <td>{{producto.name}}</td>
+        <td>
+          <button class="btn btn-verde " [routerLink]="'/ver-producto/'+producto.code">Ver producto</button>
+        </td>
+      </tr>
+      <tr class="table-success">
+        <td>TOTAL</td>
+        <td>{{compra.total}}$</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mt-3">
+    <a class="btn btn-verde" id="btnExportar" value="Imprimir" onclick="javascript:window.print()">Descargar ticket</a>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <mat-card class="ps-3 pe-3 pt-2 pb-2 mt-4">
+        <p>Por favor realice el pago con la informacion debajo, descarge el ticket de compra, y envie el comprobante de
+          pago + ticket descargado a
+          <a href="mailto:tienda@hotmail.com">tienda@hotmail.com</a>
+        </p>
+      </mat-card>
+    </div>
+    <div class="col-md-6 mt-3">
+      <mat-card class="p-2 pago-info" >
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <h1 class="text-center">Transferencia bancaria</h1>
+            <h6 class="text-center mt-3">Nombre completo: <b>Nombre completo aca</b></h6>
+            <h6 class="text-center mt-3">Alias: <b>Alias aca</b></h6>
+            <h6 class="text-center mt-3">CBU: <b>CBU aca</b></h6>
+            <h6 class="text-center mt-3">Banco: <b>Banco aca</b></h6>
+            <h6 class="text-center mt-3">Total: <b>{{compra.total}}$</b></h6>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

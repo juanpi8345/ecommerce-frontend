@@ -1,0 +1,20 @@
+h1,h5,h6{
+    color: #fff;
+}
+
+a{
+    color: var(--verde);
+}
+
+p{
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+}
+
+mat-card h6{
+    color: #000;
+}
+
+mat-card h1{
+    color: var(--verde);
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarritoService } from 'src/app/services/carrito.service';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +9,22 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  
+  userRol:string;
+  constructor(private loginService:LoginService,private userService:UserService, private router:Router){}
 
-  constructor(private loginService:LoginService, private router:Router){}
+  ngOnInit():void{
+    if(this.loginService.isLoggedIn)
+      this.obtenerUsuario();
+  }
 
+  obtenerUsuario():string{
+    this.userService.obtenerRol(this.loginService.getUser().dni).subscribe((userRol:any)=>{
+      this.userRol= userRol.Role;
+    })
+   return this.userRol;
+  }
+  
   estaLogueado():boolean{
     return this.loginService.isLoggedIn();
   }

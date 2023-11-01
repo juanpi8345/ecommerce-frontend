@@ -30,6 +30,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { LoginComponent } from './pages/login/login.component';
+import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
+import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 
 
 
@@ -47,6 +49,8 @@ import { LoginComponent } from './pages/login/login.component';
     CarritoComponent,
     RegistrarseComponent,
     LoginComponent,
+    MisComprasComponent,
+    VerCompraComponent,
   ],
   imports: [
     BrowserModule,

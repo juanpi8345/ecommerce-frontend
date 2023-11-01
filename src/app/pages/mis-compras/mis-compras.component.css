@@ -1,0 +1,20 @@
+h1,h4{
+    color: #fff;
+}
+
+mat-icon{
+    color: var(--verde);
+    cursor: pointer;
+}
+
+.pendiente{
+    color: #ffaa00;
+}
+
+.listo{
+    color: var(--verde);
+}
+
+.noCompletada{
+    color: #dc3545;
+}

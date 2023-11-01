@@ -3,8 +3,8 @@ import { Producto } from "./producto";
 import { UsuarioCompraDTO } from "./usuarioCompraDTO";
 
 export class Compra {
-    products:number[] = [];
-    user:string;
+    productsId:number[] = [];
+    userDni:string;
     type:string;
-    residence:Domicilio;
+    residence:Domicilio = new Domicilio();
 }
