@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container mt-4 aparecer">
-    <h1>Mis compras</h1>
+    <h1>Ventas</h1>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <table class="table mt-4 p-2 text-center table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
+                        <th scope="col">DNI</th>
                         <th scope="col">Total</th>
-                        <th scope="col">Tipo</th>
                         <th scope="col">Estado de pago</th>
                         <th scope="col">Estado de compra</th>
                         <th scope="col">¿Completada?</th>
@@ -18,8 +18,8 @@
                 <tbody>
                     <tr *ngFor="let compra of compras;">
                         <td>{{compra.date}}</td>
+                        <td>{{compra.userDni}}</td>
                         <td><b>{{compra.total}}$</b></td>
-                        <td>{{compra.type}}</td>
                         <td *ngIf="compra.paid === false" class="pendiente">Pendiente</td>
                         <td *ngIf="compra.paid === true" class="listo">Pagado</td>
                         <td *ngIf="compra.ready === false" class="pendiente">Pendiente</td>
@@ -27,17 +27,26 @@
                         <td *ngIf="compra.completed === false" class="noCompletada">No</td>
                         <td *ngIf="compra.completed === true" class="listo">Si</td>
                         <td>
-                          <button class="btn btn-verde" [routerLink]="'/ver-compra/'+compra.id" >Realizar pago</button>
+                          <button class="btn btn-verde" [routerLink]="'/ver-compra/'+compra.saleId" >Ver venta</button>
+                          <button class="btn btn-outline-verde ms-2">Guardar</button>
                         </td>
                       </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="row justify-content-center mt-4 mb-4">
+        <div class="col-md-6 text-center">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-verde"  *ngFor="let numero of numeros"
+                    (click)="obtenerVentasDePagina(numero-1,'date')">{{numero}}</button>
+            </div>
+        </div>
+    </div>
     <div class="row text-center justify-content-center aparecer mt-2 mb-2" *ngIf="compras.length ==0">
         <div class="col-md-12 text-center">
             <img src="../../../assets/img/error-404.png" width="600" class="mt-3" alt="">
         </div>
-        <h4 >No hay compras por aqui...</h4>
+        <h4 >No hay ventas por aqui...</h4>
     </div>
 </div>

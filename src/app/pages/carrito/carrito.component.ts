@@ -66,6 +66,7 @@ export class CarritoComponent {
         this.snack.open("Ingrese direcciones validas", "Aceptar", {
           duration: 3000
         })
+        return;
       }
       this.compra.type = "Envio a domicilio";
     }

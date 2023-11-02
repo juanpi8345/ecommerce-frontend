@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { window } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,28 +11,29 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent {
   
-  userRol:string;
+  userRol:string = undefined;
+  logueado:boolean;
   constructor(private loginService:LoginService,private userService:UserService, private router:Router){}
 
   ngOnInit():void{
-    if(this.loginService.isLoggedIn)
-      this.obtenerUsuario();
+    this.estaLogueado();
+    if(this.logueado)
+      this.obtenerUsuarioRol();
   }
 
-  obtenerUsuario():string{
+  obtenerUsuarioRol():void{
     this.userService.obtenerRol(this.loginService.getUser().dni).subscribe((userRol:any)=>{
       this.userRol= userRol.Role;
     })
-   return this.userRol;
   }
   
-  estaLogueado():boolean{
-    return this.loginService.isLoggedIn();
+  estaLogueado():void{
+    this.logueado = this.loginService.isLoggedIn();
   }
 
   logout(){
      this.loginService.logOut();
-     this.router.navigate(['/nosotros']);
+     location.reload();
   }
 
   //sessionStorage

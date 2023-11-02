@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container mt-4 mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Nuestros productos</h1>
@@ -33,7 +34,8 @@
                 <h5>Precio: {{producto.price}}$</h5>
             </div>
             <div class="d-flex justify-content-around align-items-center mt-2">
-                <button class="btn-verde btn" [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) <= 0 " (click)="agregarProductoCarrito(producto)">Añadir al carrito</button>
+                <button class="btn-verde btn" [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) <= 0 " (click)="agregarProductoCarrito(producto)"
+                *ngIf="rol === 'USER' || rol == null">Añadir al carrito</button>
                 <button class="btn btn-outline-verde"  [routerLink]="'/ver-producto/'+producto.code">Ver producto</button>
             </div>
         </div>

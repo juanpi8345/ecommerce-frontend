@@ -12,6 +12,8 @@ import { AuthGuard } from './services/auth.guard';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
+import { AdminAuthGuard } from './services/admin-auth.guard';
+import { VentasComponent } from './pages/ventas/ventas.component';
 
 const routes: Routes = [
   {path: '', redirectTo:"nosotros", pathMatch:'full'},
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path:'registrarse',component:RegistrarseComponent},
   {path:'mis-compras',component:MisComprasComponent,canActivate:[AuthGuard]},
   {path:'ver-compra/:id',component:VerCompraComponent,canActivate:[AuthGuard]},
+  {path:'ventas',component:VentasComponent,canActivate:[AdminAuthGuard]},
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 

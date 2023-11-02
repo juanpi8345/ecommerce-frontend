@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CompraDTO } from 'src/app/modelo/compraDTO';
 import { Producto } from 'src/app/modelo/producto';
 import { CompraService } from 'src/app/services/compra.service';
+import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -17,8 +19,9 @@ export class VerCompraComponent {
 
   compra: CompraDTO = new CompraDTO();
   id: number;
+  rol:string;
   constructor(private compraService: CompraService, private route: ActivatedRoute,
-    private snack: MatSnackBar) { }
+    private snack: MatSnackBar, private loginService:LoginService, private userService:UserService) { }
 
 
   ngOnInit(): void {
@@ -29,6 +32,13 @@ export class VerCompraComponent {
       this.snack.open("Error al cargar ticket", "Aceptar", {
         duration: 3000
       })
+    })
+    this.getUserRol();
+  }
+
+  public getUserRol() {
+    this.userService.obtenerRol(this.loginService.getUser().dni).subscribe((role: any) => {
+      this.rol = role.Role;
     })
   }
 

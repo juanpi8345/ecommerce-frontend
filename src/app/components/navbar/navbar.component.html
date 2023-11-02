@@ -1,4 +1,4 @@
-<header>
+<header class="aparecer">
     <nav class="navbar bg-dark  p-3" data-bs-theme="dark">
         <div class="container justify-content-between">
             <div class="d-flex align-items-center">
@@ -6,14 +6,15 @@
                 <h1 class="fs-3 ms-2">Clothing store</h1>
             </div>
             <div class="d-flex align-items-center">
-                <a href="" routerLink="nosotros">Nosotros</a>
-                <a href="" class="ms-3" routerLink="productos">Productos</a>
-                <a href="" class="ms-3" routerLink="mis-compras">Mis compras</a>
-                <a href="" class="ms-3" routerLink="ventas" *ngIf="obtenerUsuario() === 'ADMIN'">Ventas</a>
-                <a href="" class="ms-3" routerLink="contacto">Contacto</a>
-                <button class="btn-verde btn ms-4" routerLink="/login" *ngIf="!estaLogueado()">Ingresar</button>
-                <button class="btn-verde btn ms-4" (click)="logout()" *ngIf="estaLogueado()">Salir</button>
-                <div class="d-flex align-items-end"  *ngIf="userRol !== 'ADMIN'">
+                <a href="" routerLink="/nosotros" *ngIf="userRol == undefined || userRol === 'USER'">Nosotros</a>
+                <a href="" class="ms-3" routerLink="/productos">Productos</a>
+                <a href="" class="ms-3" routerLink="/ventas" *ngIf="userRol === 'ADMIN'">Ventas</a>
+                <a href="" class="ms-3" routerLink="/usuarios" *ngIf="userRol === 'ADMIN'">Usuarios</a>
+                <a href="" class="ms-3" routerLink="/mis-compras" *ngIf="userRol == undefined || userRol === 'USER'">Mis compras</a>
+                <a href="" class="ms-3" routerLink="/contacto" *ngIf="userRol == undefined || userRol === 'USER'">Contacto</a>
+                <button class="btn-verde btn ms-4" routerLink="/login" *ngIf="!logueado">Ingresar</button>
+                <button class="btn-verde btn ms-4" (click)="logout()" *ngIf="logueado">Salir</button>
+                <div class="d-flex align-items-end" *ngIf="userRol == undefined || userRol === 'USER'">
                     <img src="../../../assets/img/carrito-de-compras.png" alt="" class="ms-4" width= "40px" routerLink="/carrito">
                     <h6 class="ms-1">{{obtenerTamanioCarrito()}}</h6>
                 </div>

@@ -32,6 +32,7 @@ import { RegistrarseComponent } from './pages/registrarse/registrarse.component'
 import { LoginComponent } from './pages/login/login.component';
 import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
 
 
 
@@ -51,6 +52,7 @@ import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
     LoginComponent,
     MisComprasComponent,
     VerCompraComponent,
+    VentasComponent,
   ],
   imports: [
     BrowserModule,

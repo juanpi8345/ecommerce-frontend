@@ -1,0 +1,15 @@
+h1{
+    color: #fff;
+}
+
+.pendiente{
+    color: #ffaa00;
+}
+
+.listo{
+    color: var(--verde);
+}
+
+.noCompletada{
+    color: #dc3545;
+}

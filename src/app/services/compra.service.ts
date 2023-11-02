@@ -22,4 +22,8 @@ export class CompraService {
   public obtenerCompraPorUsuario(dni:string){
     return this.http.get(this.apiUrl + "get/user/"+dni);
   }
+
+  public obtenerComprasPaginadas(page:number,sortField:string){
+    return this.http.get(this.apiUrl+"get/paginated?page="+page+"&"+"sortField="+sortField);
+  }
 }
