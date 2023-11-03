@@ -14,6 +14,7 @@ import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 import { AdminAuthGuard } from './services/admin-auth.guard';
 import { VentasComponent } from './pages/ventas/ventas.component';
+import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.component';
 
 const routes: Routes = [
   {path: '', redirectTo:"nosotros", pathMatch:'full'},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:'mis-compras',component:MisComprasComponent,canActivate:[AuthGuard]},
   {path:'ver-compra/:id',component:VerCompraComponent,canActivate:[AuthGuard]},
   {path:'ventas',component:VentasComponent,canActivate:[AdminAuthGuard]},
+  {path:'usuarios',component:VerUsuariosComponent,canActivate:[AdminAuthGuard]},
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 

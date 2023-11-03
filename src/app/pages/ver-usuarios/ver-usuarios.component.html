@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <h1>Usuarios registrados</h1>
+    <table class="table mt-4 p-2 text-center ">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios, let i = index">
+                <td>{{usuario.dni}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{roles[i]}}</td>
+                <td>
+                    <button class="btn btn-verde">Ver producto</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

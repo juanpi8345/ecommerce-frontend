@@ -17,6 +17,7 @@ export class CarritoComponent {
   verInstrucciones: boolean = true;
   verPreguntas: boolean = false;
   compra: Compra = new Compra();
+  cantidadDeComprasSinCompletar: number = 0;
 
 
   constructor(private loginService: LoginService, private snack: MatSnackBar,
@@ -73,6 +74,7 @@ export class CarritoComponent {
     else {
       this.compra.type = "Entrega presencial";
     }
+    this.obtenerCantidadComprasSinCompletar(this.loginService.getUser().dni);
     if (this.obtenerTamanioCarrito() > 0) {
       Swal.fire({
         title: 'Registrar compra',
@@ -83,6 +85,10 @@ export class CarritoComponent {
         confirmButtonColor: '#13c2c2'
       }).then((result) => {
         if (result.isConfirmed) {
+          if (this.cantidadDeComprasSinCompletar >= 4) {
+            Swal.fire("No se puede registrar mas compras", "No puede tener registradas mas de 4 compras sin completar", "error");
+            return;
+          }
           this.compraService.registrarCompra(this.compra).subscribe(() => {
             //this.router.navigate(['miscompras']);
             sessionStorage.clear();
@@ -94,10 +100,16 @@ export class CarritoComponent {
           })
         }
       });
-    }else{
-      Swal.fire("Carrito vacio","Agrega al menos un producto para registrar la compra","error");
+    } else {
+      Swal.fire("Carrito vacio", "Agrega al menos un producto para registrar la compra", "error");
     }
 
+  }
+
+  obtenerCantidadComprasSinCompletar(dni: number) {
+    this.compraService.obtenerCantidadDeComprasSinCompletarDelUsuario(dni).subscribe((cantidad: any) => {
+      this.cantidadDeComprasSinCompletar = cantidad.Quantity;
+    })
   }
 
   //sessionStorage

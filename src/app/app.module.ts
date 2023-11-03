@@ -33,6 +33,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
+import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.component';
 
 
 
@@ -53,6 +54,7 @@ import { VentasComponent } from './pages/ventas/ventas.component';
     MisComprasComponent,
     VerCompraComponent,
     VentasComponent,
+    VerUsuariosComponent,
   ],
   imports: [
     BrowserModule,

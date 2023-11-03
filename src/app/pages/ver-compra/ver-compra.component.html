@@ -18,7 +18,7 @@
       </b></h6>
     </div>
   </div>
-  <table id="tabla" class="table mt-4 p-2 text-center table-dark">
+  <table id="tabla" class="table mt-4 p-2 text-center">
     <thead>
       <tr>
         <th scope="col">ID producto</th>
@@ -47,7 +47,14 @@
   <div class="mt-3">
     <a class="btn btn-verde" id="btnExportar" value="Imprimir" onclick="javascript:window.print()">Descargar ticket</a>
   </div>
-  <div class="row justify-content-center" *ngIf="rol === 'USER'">
+  <div class="row mt-4 aparecer" *ngIf="!compra.paid && compra.ready && rol === 'USER' && compra.type === 'Entrega presencial'">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <p>Su entrega ya esta lista para que pueda retirarla en el local, sin embargo no esta paga aun, (puede pagarla directamenente en el local)</p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="rol === 'USER' && !compra.paid">
     <div class="col-md-12">
       <mat-card class="ps-3 pe-3 pt-2 pb-2 mt-4">
         <p>Por favor realice el pago con la informacion debajo, descarge el ticket de compra, y envie el comprobante de
@@ -56,7 +63,7 @@
         </p>
       </mat-card>
     </div>
-    <div class="col-md-6 mt-3">
+    <div class="col-md-6 mt-3" *ngIf="!compra.paid">
       <mat-card class="p-2 pago-info">
         <div class="row justify-content-center">
           <div class="col-md-12">
@@ -70,5 +77,33 @@
         </div>
       </mat-card>
     </div>
+  </div>
+  <div class="row mt-4 aparecer" *ngIf="compra.paid && !compra.ready && rol === 'USER'">
+    <div class="col-md-12">
+      <div  *ngIf="compra.type === 'Entrega presencial'" class="alert alert-success">
+        <p>Hemos recibido tu pago!, cuando su pedido este disponible para ser retirado, su estado de compra cambiara a 'Listo'</p>
+      </div>
+      <div  *ngIf="compra.type === 'Envio a domicilio'" class="alert alert-success">
+        <p>Hemos recibido tu pago!, cuando su pedido este disponible para ser enviado, (y sea enviado), su estado de compra cambiara a 'Listo'</p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 aparecer" *ngIf="compra.paid && compra.ready && !compra.completed && rol === 'USER'">
+    <div class="col-md-12">
+      <div class="alert alert-success"  *ngIf="compra.type === 'Entrega presencial'" class="alert alert-success">
+        <p>Su compra ya esta lista y paga!, ya puede acercarse y retirarla en el local</p>
+      </div>
+      <div class="alert alert-success"  *ngIf="compra.type === 'Envio a domicilio'" class="alert alert-success">
+        <p>Su compra ya esta lista y paga!, en breve llegara a su domicilio</p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 aparecer" *ngIf="compra.completed">
+    <div class="col-md-12">
+      <div class="alert alert-success"  *ngIf="compra.type === 'Entrega presencial'" class="alert alert-success">
+        <p>Su compra ya fue realizada y entregada con exito!</p>
+      </div>
+    </div>
+    
   </div>
 </div>

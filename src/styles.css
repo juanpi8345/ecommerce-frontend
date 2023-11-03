@@ -40,6 +40,7 @@ mat-icon{
     animation: aparecer .7s ease-in-out forwards;
 }
 
+
 @keyframes aparecer {
     from {
         opacity: 0;

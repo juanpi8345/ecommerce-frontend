@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<String>(this.apiUrl+dni+"/getRole");
   }
 
+  public traerTodos(){
+    return this.http.get(this.apiUrl+"get");
+  }
+
   public traerUsuarioPorDni(dni:string){
     return this.http.get(this.apiUrl+ "find/dni/"+dni);
   }

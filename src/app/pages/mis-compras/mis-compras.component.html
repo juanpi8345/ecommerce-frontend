@@ -27,7 +27,8 @@
                         <td *ngIf="compra.completed === false" class="noCompletada">No</td>
                         <td *ngIf="compra.completed === true" class="listo">Si</td>
                         <td>
-                          <button class="btn btn-verde" [routerLink]="'/ver-compra/'+compra.id" >Realizar pago</button>
+                          <button class="btn btn-verde" [routerLink]="'/ver-compra/'+compra.id" >Ver ticket</button>
+                          <button class="btn btn-outline-verde ms-2" *ngIf="compra.completed" (click)="eliminarCompra(compra.id)">Eliminar</button>
                         </td>
                       </tr>
                 </tbody>
