@@ -16,8 +16,8 @@ export class UserService {
     return this.http.get<String>(this.apiUrl+dni+"/getRole");
   }
 
-  public traerTodos(){
-    return this.http.get(this.apiUrl+"get");
+  public traerTodos(page:number,sortField:string){
+    return this.http.get(this.apiUrl+"get"+"?page="+page+"&sortField="+sortField);
   }
 
   public traerUsuarioPorDni(dni:string){
@@ -33,5 +33,13 @@ export class UserService {
 
   public existeEmail(email:string){
     return this.http.get(this.apiUrl+"exists/email/"+email);
+  }
+
+  public buscarUsuarios(query:string){
+    return this.http.get(this.apiUrl+"search"+"?query="+query);
+  }
+
+  public asignarRol(userId:number){
+    return this.http.put(this.apiUrl + "/changeRole/user/"+userId,null);
   }
 }

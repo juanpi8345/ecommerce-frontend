@@ -1,11 +1,29 @@
 <app-navbar></app-navbar>
-<div class="container mt-4">
-    <h1>Usuarios registrados</h1>
-    <table class="table mt-4 p-2 text-center ">
+<div class="container mt-4 aparecer">
+    <div class="d-flex justify-content-between">
+        <h1>Usuarios registrados</h1>
+        <div>
+            <mat-form-field>
+                <mat-label>Ordenar por</mat-label>
+                <mat-select [(ngModel)]="ordenamiento">
+                    <mat-option value="dni" (click)="traerTodos(0,ordenamiento)">DNI</mat-option>
+                    <mat-option value="name" (click)="traerTodos(0,ordenamiento)">Nombre</mat-option>
+                    <mat-option value="role" (click)="traerTodos(0,ordenamiento)">Rol</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ms-3">
+                <mat-label>Buscar por DNI</mat-label>
+                <input type="text" matInput name="query" [(ngModel)]="query" (input)="buscarUsuarios()">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <table class="table mt-4 p-2 text-center">
         <thead class="table-dark">
             <tr>
                 <th scope="col">DNI</th>
-                <th scope="col">Email</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -13,12 +31,23 @@
         <tbody>
             <tr *ngFor="let usuario of usuarios, let i = index">
                 <td>{{usuario.dni}}</td>
-                <td>{{usuario.email}}</td>
-                <td>{{roles[i]}}</td>
+                <td>{{usuario.name}}</td>
+                <td>{{usuario.lastname}}</td>
+                <td *ngIf="usuario.role === 'ADMIN'">Vendedor</td>
+                <td *ngIf="usuario.role === 'USER'">Cliente</td>
                 <td>
-                    <button class="btn btn-verde">Ver producto</button>
+                    <button class="btn btn-verde" *ngIf="usuario.role === 'USER'" (click)="asignarRol(usuario.id)">Asignar como vendedor</button>
+                    <button class="btn btn-verde" *ngIf="usuario.role === 'ADMIN'" (click)="asignarRol(usuario.id)">Asignar como cliente</button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="row justify-content-center mt-4 mb-4">
+        <div class="col-md-6 text-center">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-verde" *ngFor="let numero of numeros"
+                    (click)="traerTodos(numero-1,ordenamiento)">{{numero}}</button>
+            </div>
+        </div>
+    </div>
 </div>
