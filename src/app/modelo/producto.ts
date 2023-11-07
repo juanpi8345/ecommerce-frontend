@@ -6,4 +6,6 @@ export class Producto {
     description:string;
     stock:number;
     imgUrl: string;
+    hasDiscount:boolean;
+    percentageDiscount:number;
 }

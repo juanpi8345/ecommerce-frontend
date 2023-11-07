@@ -11,3 +11,23 @@ a{
     color: var(--verde);
 }
 
+.info{
+    border: 1px solid #fff;
+    background-color: #656565;
+}
+
+.row{
+    position: relative;
+}
+
+.col-md-6 .promo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 20px;
+    background: yellow;
+    padding: 15px;
+    color: black;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}

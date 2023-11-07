@@ -5,7 +5,7 @@
                 <img src="../../../assets/img/woman-clothes.png" alt="" width="40px">
                 <h1 class="fs-3 ms-2">Clothing store</h1>
             </div>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center menu-desk">
                 <a href="" routerLink="/nosotros" *ngIf="userRol == undefined || userRol === 'USER'">Nosotros</a>
                 <a href="" class="ms-3" routerLink="/productos">Productos</a>
                 <a href="" class="ms-3" routerLink="/ventas" *ngIf="userRol === 'ADMIN'">Ventas</a>
@@ -19,6 +19,47 @@
                     <h6 class="ms-1">{{obtenerTamanioCarrito()}}</h6>
                 </div>
             </div>
+            <div class="menu-phone">
+                <mat-icon class="mat-18" color="primary" [matMenuTriggerFor]="menu">menu</mat-icon>
+                <mat-menu #menu="matMenu">
+                  <a mat-menu-item routerLink="/nosotros" *ngIf="userRol == undefined || userRol === 'USER'">
+                    <mat-icon class="nosotros">home</mat-icon>
+                    <span>Nosotros</span>
+                  </a>
+                  <a mat-menu-item routerLink="/productos">
+                    <mat-icon class="productos">receipt</mat-icon>
+                    <span>Productos</span>
+                  </a>
+                  <a mat-menu-item routerLink="/ventas" *ngIf="userRol === 'ADMIN'">
+                    <mat-icon class="ventas">money_off</mat-icon>
+                    <span>Ventas</span>
+                  </a>
+                  <a mat-menu-item routerLink="/usuarios" *ngIf="userRol === 'ADMIN'">
+                    <mat-icon class="usuarios">people</mat-icon>
+                    <span>Usuarios</span>
+                  </a>
+                  <a mat-menu-item routerLink="/mis-compras" *ngIf="userRol == undefined || userRol === 'USER'">
+                    <mat-icon class="tienda">shop</mat-icon>
+                    <span>Mis compras</span>
+                  </a>
+                  <a mat-menu-item routerLink="/contacto" *ngIf="userRol == undefined || userRol === 'USER'">
+                    <mat-icon class="contacto">contact_phone</mat-icon>
+                    <span>Contacto</span>
+                  </a>
+                  <a mat-menu-item routerLink="/login" *ngIf="!logueado" >
+                    <mat-icon class="ingresar">perm_identity</mat-icon>
+                    <span>Ingresar</span>
+                  </a>
+                    <a mat-menu-item (click)="logout()" *ngIf="logueado">
+                    <mat-icon class="salir">exit_to_app</mat-icon>
+                    <span>Salir</span>
+                  </a>
+                  <div mat-menu-item *ngIf="userRol == undefined || userRol === 'USER'" routerLink="/carrito">
+                    <img src="../../../assets/img/carrito-de-compras.png" alt="" width= "30px" >
+                    <span style="color:#000" class="ms-2">{{obtenerTamanioCarrito()}}</span>
+                </div>
+                </mat-menu>
+              </div>
         </div>
     </nav>
 </header>

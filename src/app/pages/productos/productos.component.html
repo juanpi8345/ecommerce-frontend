@@ -2,29 +2,54 @@
 <div class="container mt-4 mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Nuestros productos</h1>
-        <div>
-            <mat-form-field>
-                <mat-label>Ordenar por</mat-label>
-                <mat-select [(ngModel)]="ordenamiento">
-                    <mat-option value="name" (click)="obtenerProductos(0)">Nombre</mat-option>
-                    <mat-option value="price" (click)="obtenerProductos(0)">Precio</mat-option>
-                    <mat-option value="stock" (click)="obtenerProductos(0)">Stock</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ms-3">
-                <mat-label>Buscar productos</mat-label>
-                <input type="text" matInput  name="query" [(ngModel)]="query" (input)="buscarProductos()">
-            </mat-form-field>
-            <mat-icon class="mat-18 add ms-4" routerLink="/agregar-producto" *ngIf="rol === 'ADMIN'">add</mat-icon>
-        </div>
+        <mat-icon class="mat-18 add ms-4" routerLink="/agregar-producto" *ngIf="rol === 'ADMIN'">add</mat-icon>
+    </div>
+    <div class="row justify-content-end mt-3">
+        <mat-form-field class="col-md-6">
+            <mat-label>Ordenar por</mat-label>
+            <mat-select [(ngModel)]="ordenamiento">
+                <mat-option value="name" (click)="obtenerProductos(0)">Nombre</mat-option>
+                <mat-option value="price" (click)="obtenerProductos(0)">Precio</mat-option>
+                <mat-option value="stock" (click)="obtenerProductos(0)">Stock</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Buscar productos</mat-label>
+            <input type="text" matInput name="query" [(ngModel)]="query" (input)="buscarProductos()">
+        </mat-form-field>
     </div>
     <div class="row text-center justify-content-center">
         <div class="col-md-4 mt-5 p-2 aparecer" *ngFor="let producto of productos">
-            <div class="d-flex justify-content-center align-items-center mt-2 mb-2">
-                <h1>{{producto.name}}</h1>
-                <div *ngIf="true" class="ms-5">
-                    <mat-icon class="mat-18 edit" [routerLink]="'/editar-producto/'+producto.code" *ngIf="rol === 'ADMIN'">edit</mat-icon>
-                    <mat-icon class="ms-2 delete" (click)="eliminarProducto(producto.code)"*ngIf="rol === 'ADMIN'">delete</mat-icon>
+            <div class="card carta-producto">
+                <div class="img-container">
+                  <img  [src]="producto.imgUrl">
+                  <span class="promo" *ngIf="producto.hasDiscount">{{producto.percentageDiscount}}% de descuento</span>
+                  <span class="price" *ngIf="!producto.hasDiscount">{{producto.price}}$</span>
+                  <span class="price" *ngIf="producto.hasDiscount"><del class="me-1">{{producto.price}}</del> 
+                    {{producto.price - (producto.price*producto.percentageDiscount)/100}}$</span>
+                </div>
+                <p class="mt-2">{{producto.name}}</p>
+                <p class="mt-2 mb-2">Stock:  <span>{{producto.stock - obtenerStockContandoCarrito(producto.code)}}</span></p>
+                <div *ngIf="rol === 'ADMIN'" class="mb-2">
+                    <mat-icon class="mat-18 edit" [routerLink]="'/editar-producto/'+producto.code"
+                        >edit</mat-icon>
+                    <mat-icon class="ms-2 delete" (click)="eliminarProducto(producto.code)"
+                        >delete</mat-icon>
+                </div>
+                <button class="btn-verde btn"
+                [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) <= 0 "
+                (click)="agregarProductoCarrito(producto)" *ngIf="rol === 'USER' || rol == null">Añadir al
+                carrito</button>
+                <button class="btn btn-verde mt-2" [routerLink]="'/ver-producto/'+producto.code">Ver
+                    producto</button>
+            </div>
+            <!-- <div class="d-flex justify-content-center align-items-center mt-2 mb-2 flex-wrap">
+                <h1 class="fs-2">{{producto.name}}</h1>
+                <div *ngIf="true" class="ms-3">
+                    <mat-icon class="mat-18 edit" [routerLink]="'/editar-producto/'+producto.code"
+                        *ngIf="rol === 'ADMIN'">edit</mat-icon>
+                    <mat-icon class="ms-2 delete" (click)="eliminarProducto(producto.code)"
+                        *ngIf="rol === 'ADMIN'">delete</mat-icon>
                 </div>
             </div>
             <img [src]="producto.imgUrl" alt="" height="200" class="p-2">
@@ -33,24 +58,27 @@
                 <h5>Precio: {{producto.price}}$</h5>
             </div>
             <div class="d-flex justify-content-around align-items-center mt-2">
-                <button class="btn-verde btn" [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) <= 0 " (click)="agregarProductoCarrito(producto)"
-                *ngIf="rol === 'USER' || rol == null">Añadir al carrito</button>
-                <button class="btn btn-outline-verde"  [routerLink]="'/ver-producto/'+producto.code">Ver producto</button>
+                <button class="btn-verde btn"
+                    [disabled]="producto.stock - obtenerStockContandoCarrito(producto.code) <= 0 "
+                    (click)="agregarProductoCarrito(producto)" *ngIf="rol === 'USER' || rol == null">Añadir al
+                    carrito</button>
+                <button class="btn btn-outline-verde" [routerLink]="'/ver-producto/'+producto.code">Ver
+                    producto</button>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row text-center justify-content-center aparecer" *ngIf="productos.length == 0">
         <div class="col-md-12 text-center">
-            <img src="../../../assets/img/error-404.png" width="600" class="mt-3" alt="">
+            <img src="../../../assets/img/error-404.png" class="mt-3" style="width:40%" alt="">
         </div>
         <h4 class="mt-4">Nada por aqui...</h4>
     </div>
-    <div class="row justify-content-center mt-4 mb-4">
-        <div class="col-md-6 text-center">
-            <div class="btn-group me-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-outline-verde"  *ngFor="let numero of numeros"
-                    (click)="obtenerProductos(numero-1)">{{numero}}</button>
-            </div>
+</div>
+<div class="row justify-content-center mt-4 mb-4">
+    <div class="col-md-6 text-center">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-outline-verde" *ngFor="let numero of numeros"
+                (click)="obtenerProductos(numero-1)">{{numero}}</button>
         </div>
     </div>
 </div>

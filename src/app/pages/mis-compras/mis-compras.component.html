@@ -3,36 +3,37 @@
     <h1>Mis compras</h1>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table mt-4 p-2 text-center table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Estado de pago</th>
-                        <th scope="col">Estado de compra</th>
-                        <th scope="col">¿Completada?</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let compra of compras;">
-                        <td>{{compra.date}}</td>
-                        <td><b>{{compra.total}}$</b></td>
-                        <td>{{compra.type}}</td>
-                        <td *ngIf="compra.paid === false" class="pendiente">Pendiente</td>
-                        <td *ngIf="compra.paid === true" class="listo">Pagado</td>
-                        <td *ngIf="compra.ready === false" class="pendiente">Pendiente</td>
-                        <td *ngIf="compra.ready === true" class="listo">Lista</td>
-                        <td *ngIf="compra.completed === false" class="noCompletada">No</td>
-                        <td *ngIf="compra.completed === true" class="listo">Si</td>
-                        <td>
-                          <button class="btn btn-verde" [routerLink]="'/ver-compra/'+compra.id" >Ver ticket</button>
-                          <button class="btn btn-outline-verde ms-2" *ngIf="compra.completed" (click)="eliminarCompra(compra.id)">Eliminar</button>
-                        </td>
-                      </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table mt-4 p-2 text-center table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Estado de pago</th>
+                            <th scope="col">Estado de compra</th>
+                            <th scope="col">¿Completada?</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let compra of compras;">
+                            <td>{{compra.date}}</td>
+                            <td><b>{{compra.total}}$</b></td>
+                            <td>{{compra.type}}</td>
+                            <td *ngIf="compra.paid === false" class="pendiente">Pendiente</td>
+                            <td *ngIf="compra.paid === true" class="listo">Pagado</td>
+                            <td *ngIf="compra.ready === false" class="pendiente">Pendiente</td>
+                            <td *ngIf="compra.ready === true" class="listo">Lista</td>
+                            <td *ngIf="compra.completed === false" class="noCompletada">No</td>
+                            <td *ngIf="compra.completed === true" class="listo">Si</td>
+                            <td>
+                              <button class="btn btn-verde mt-2" [routerLink]="'/ver-compra/'+compra.id" >Ver ticket</button>
+                            </td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="row text-center justify-content-center aparecer mt-2 mb-2" *ngIf="compras.length ==0">

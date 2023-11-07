@@ -10,6 +10,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   private apiUrl:string = "http://localhost:81/user-service/user/";
+  private apiUrlAdmin:string = "http://localhost:81/user-service/admin/";
 
 
   public obtenerRol(dni:string){
@@ -41,5 +42,13 @@ export class UserService {
 
   public asignarRol(userId:number){
     return this.http.put(this.apiUrl + "/changeRole/user/"+userId,null);
+  }
+
+  public enviarCodigo(email:string){
+    return this.http.post(this.apiUrlAdmin + "sendCode?email="+email,null);
+  }
+
+  public validarCodigo(email:string,code:string){
+    return this.http.post(this.apiUrlAdmin + "verificateCode?email="+email+"&code="+code,null);
   }
 }

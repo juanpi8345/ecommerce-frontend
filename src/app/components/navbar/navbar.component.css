@@ -33,3 +33,28 @@ h1,h6{
     color: #fff;
     margin-bottom: 0 !important;
 }
+
+.mat-18{
+    color: var(--verde);
+}
+
+.nosotros{
+    color: var(--verde);
+}
+
+.productos{
+    color: darkkhaki
+}
+
+
+.ventas,.tienda{
+    color: #48e;
+}
+
+.contacto{
+    color:yellowgreen;
+}
+
+.ingresar,.salir{
+    color: var(--verde);
+}

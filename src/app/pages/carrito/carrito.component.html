@@ -1,90 +1,90 @@
 <app-navbar></app-navbar>
 <div class="container mt-4 aparecer mb-4">
   <h1>Carrito</h1>
-  <table class="table mt-4 p-2 text-center ">
-    <thead>
-      <tr>
-        <th scope="col">ID producto</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let producto of obtenerProductosCarrito(); let i = index">
-        <td>{{producto.code}}</td>
-        <td>{{producto.name}}</td>
-        <td>{{producto.price}}$</td>
-        <td>
-          <button class="btn btn-verde " [routerLink]="'/ver-producto/'+producto.code">Ver producto</button>
-          <mat-icon class="mat-18 ms-3" (click)="eliminarItem(i)">delete</mat-icon>
-        </td>
-      </tr>
-      <tr class="table-success">
-        <td>TOTAL</td>
-        <td></td>
-        <td>{{obtenerTotal()}}$</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row mt-4 align-items-center">
-    <form (ngSubmit)="realizarCompra()">
-      <mat-slide-toggle (toggleChange)="envioDomicilio = !envioDomicilio"><span class="ms-1">Envio a
-          domicilio</span></mat-slide-toggle>
-      <button class="btn btn-verde ms-5">Registrar compra</button>
-      <div class="row mt-4 aparecer" *ngIf="envioDomicilio">
-        <div class="col-md-3">
-          <mat-form-field class="w-100">
-            <mat-label>Provincia</mat-label>
-            <mat-select [(value)]="compra.residence.province">
-              <mat-option value="Buenos Aires">Buenos Aires</mat-option>
-              <mat-option value="Catamarca">Catamarca</mat-option>
-              <mat-option value="Chaco">Chaco</mat-option>
-              <mat-option value="Chubut">Chubut</mat-option>
-              <mat-option value="Cordoba">Cordoba</mat-option>
-              <mat-option value="Corrientes">Corrientes</mat-option>
-              <mat-option value="Entre rios">Entre rios</mat-option>
-              <mat-option value="Formosa">Formosa</mat-option>
-              <mat-option value="Jujuy">Jujuy</mat-option>
-              <mat-option value="La pampa">La pampa</mat-option>
-              <mat-option value="La rioja">La rioja</mat-option>
-              <mat-option value="Mendoza">Mendoza</mat-option>
-              <mat-option value="Misiones">Misiones</mat-option>
-              <mat-option value="Neuquen">Neuquen</mat-option>
-              <mat-option value="Río Negro">Río Negro</mat-option>
-              <mat-option value="Salta">Salta</mat-option>
-              <mat-option value="San Juan">San Juan</mat-option>
-              <mat-option value="San Luis">San Luis</mat-option>
-              <mat-option value="Santa Cruz">Santa Cruz</mat-option>
-              <mat-option value="Santa Fe">Santa Fe</mat-option>
-              <mat-option value="Santiago del Estero">Santiago del Estero</mat-option>
-              <mat-option value="Tierra del Fuego">Tierra del Fuego</mat-option>
-              <mat-option value="Tucumán">Tucumán</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-md-3">
-          <mat-form-field class="w-100">
-            <mat-label>Localidad</mat-label>
-            <input type="text" matInput name="localidad" [(ngModel)]="compra.residence.locality">
-          </mat-form-field>
-        </div>
-        <div class="col-md-3">
-          <mat-form-field class="w-100">
-            <mat-label>Calle</mat-label>
-            <input type="text" matInput name="calle" [(ngModel)]="compra.residence.street">
-          </mat-form-field>
-        </div>
-        <div class="col-md-3">
-          <mat-form-field class="w-100">
-            <mat-label>Numero de domicilio</mat-label>
-            <input type="number" matInput name="numero" [(ngModel)]="compra.residence.residenceNumber">
-          </mat-form-field>
-        </div>
-      </div>
-    </form>
+  <div class="table-responsive">
+    <table class="table mt-4 p-2 text-center ">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of obtenerProductosCarrito(); let i = index">
+          <td>{{producto.code}}</td>
+          <td>{{producto.name}}</td>
+          <td *ngIf="producto.hasDiscount"><del class="me-1" >{{producto.price}}</del><b>{{producto.price - (producto.price*producto.percentageDiscount)/100}}$</b></td>
+          <td *ngIf="!producto.hasDiscount"><b>{{producto.price}}$</b></td>
+          <td>
+            <mat-icon class="mat-18" (click)="eliminarItem(i)">delete</mat-icon>
+          </td>
+        </tr>
+        <tr class="table-success">
+          <td>TOTAL</td>
+          <td></td>
+          <td><b>{{obtenerTotal()}}$</b></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <form (ngSubmit)="realizarCompra()" class="mt-3">
+    <mat-slide-toggle (toggleChange)="envioDomicilio = !envioDomicilio"><span class="ms-1 me-3">Envio a
+        domicilio</span></mat-slide-toggle>
+    <div class="row mt-3 aparecer" *ngIf="envioDomicilio">
+      <div class="col-md-3">
+        <mat-form-field class="w-100">
+          <mat-label>Provincia</mat-label>
+          <mat-select [(value)]="compra.residence.province">
+            <mat-option value="Buenos Aires">Buenos Aires</mat-option>
+            <mat-option value="Catamarca">Catamarca</mat-option>
+            <mat-option value="Chaco">Chaco</mat-option>
+            <mat-option value="Chubut">Chubut</mat-option>
+            <mat-option value="Cordoba">Cordoba</mat-option>
+            <mat-option value="Corrientes">Corrientes</mat-option>
+            <mat-option value="Entre rios">Entre rios</mat-option>
+            <mat-option value="Formosa">Formosa</mat-option>
+            <mat-option value="Jujuy">Jujuy</mat-option>
+            <mat-option value="La pampa">La pampa</mat-option>
+            <mat-option value="La rioja">La rioja</mat-option>
+            <mat-option value="Mendoza">Mendoza</mat-option>
+            <mat-option value="Misiones">Misiones</mat-option>
+            <mat-option value="Neuquen">Neuquen</mat-option>
+            <mat-option value="Río Negro">Río Negro</mat-option>
+            <mat-option value="Salta">Salta</mat-option>
+            <mat-option value="San Juan">San Juan</mat-option>
+            <mat-option value="San Luis">San Luis</mat-option>
+            <mat-option value="Santa Cruz">Santa Cruz</mat-option>
+            <mat-option value="Santa Fe">Santa Fe</mat-option>
+            <mat-option value="Santiago del Estero">Santiago del Estero</mat-option>
+            <mat-option value="Tierra del Fuego">Tierra del Fuego</mat-option>
+            <mat-option value="Tucumán">Tucumán</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class="w-100">
+          <mat-label>Localidad</mat-label>
+          <input type="text" matInput name="localidad" [(ngModel)]="compra.residence.locality">
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class="w-100">
+          <mat-label>Calle</mat-label>
+          <input type="text" matInput name="calle" [(ngModel)]="compra.residence.street">
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class="w-100">
+          <mat-label>Numero de domicilio</mat-label>
+          <input type="number" matInput name="numero" [(ngModel)]="compra.residence.residenceNumber">
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="btn btn-verde">Registrar compra</button>
+  </form>
   <div class="d-flex justify-content-center mt-5">
     <button class="btn btn-verde" (click)="toggleInstrucciones()">Instrucciones</button>
     <button class="btn btn-outline-verde ms-4" (click)="togglePreguntas()">Preguntas</button>

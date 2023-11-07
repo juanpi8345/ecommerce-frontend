@@ -13,3 +13,11 @@ h1{
 .noCompletada{
     color: #dc3545;
 }
+
+
+@media (max-width: 950px) {
+    button{
+        margin-top: 7px;
+    }
+
+}

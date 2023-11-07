@@ -1,52 +1,78 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Mooli', sans-serif; background-color: #1a1d20; }
+html,
+body {
+    height: 100%;
+}
 
-:root{
+body {
+    margin: 0;
+    font-family: 'Mooli', sans-serif;
+    background-color: #1a1d20;
+}
+
+:root {
     --verde: #13c2c2;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-mat-icon{
+mat-icon {
     vertical-align: middle;
 }
 
-.btn-verde{
-    background-color: var(--verde)!important;
-    color: #fff!important;
+.btn-verde {
+    background-color: var(--verde) !important;
+    color: #fff !important;
     border-color: #13c2c2;
     transition: background .6s ease;
 }
 
-.btn-outline-verde{
+.btn-outline-verde {
     border: 1px solid #13c2c2;
-    color: #fff!important;
+    color: #fff !important;
     background-color: transparent;
     transition: background .6s ease;
 }
 
-.btn-outline-verde:hover{
+.btn-outline-verde:hover {
     background-color: var(--verde);
 }
 
-.btn-verde:hover{
-    color: #fff!important;
-    background-color: #35b6b6!important;
+.btn-verde:hover {
+    color: #fff !important;
+    background-color: #35b6b6 !important;
 }
 
-.aparecer{
+.aparecer {
     animation: aparecer .7s ease-in-out forwards;
 }
 
+.menu-phone{
+    display: none;
+}
+
+.menu-desk{
+    display: block;
+}
 
 @keyframes aparecer {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
+@media (max-width: 950px) {
+    .menu-desk {
+        display: none!important;
+    }
+
+    .menu-phone {
+        display: block;
+    }
+
+}

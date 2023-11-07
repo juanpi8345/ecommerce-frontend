@@ -9,3 +9,7 @@ a{
 textarea{
     resize: none!important;
 }
+
+span{
+    color:#fff;
+}

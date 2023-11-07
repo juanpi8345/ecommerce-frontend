@@ -1,23 +1,76 @@
-h1,h4,h5{
+h1,
+h4,
+h5 {
     color: #fff;
 }
 
-.col-md-4{
-    border-right: 1px solid #fff;
-}
-
-mat-icon{
+mat-icon {
     cursor: pointer;
 }
 
-.edit{
+.edit {
     color: grey;
 }
 
-.delete{
+.delete {
     color: lightcoral;
 }
 
-.add{
+.add {
     color: var(--verde);
+}
+
+.carta-producto {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.carta-producto .img-container {
+    overflow: hidden;
+    position: relative;
+    height: 400px;
+}
+
+.carta-producto .img-container img {
+    width: 100%;
+}
+
+.carta-producto .img-container .price {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    left: 0;
+    font-size: 20px;
+    background: var(--verde);
+    padding: 15px;
+}
+
+.carta-producto p {
+    margin: 0;
+}
+
+.carta-producto span {
+    color: var(--verde);
+}
+
+.carta-producto .img-container img {
+    transition: all .7s ease;
+    cursor: pointer;
+}
+
+.carta-producto:hover .img-container img {
+    transform: scale(1.15);
+    filter: opacity(1);
+}
+
+.carta-producto .img-container .promo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 20px;
+    background: yellow;
+    padding: 15px;
+    color: black;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
 }

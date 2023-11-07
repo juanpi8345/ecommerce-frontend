@@ -38,8 +38,8 @@ export class ContactoComponent {
       return;
     }
     Swal.fire("Formulario enviado","El formulario se envio correctamente, pronto obtendra una respuesta.","success");
-    this.limpiarCampos;
     this.contactoService.enviarFormulario(this.contacto).subscribe(()=>{},err=>console.log(err));
+    this.limpiarCampos();
   }
 
   limpiarCampos(){

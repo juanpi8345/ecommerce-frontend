@@ -4,13 +4,16 @@
         <h1 class="mt-5 mb-5">{{producto.name}}</h1>
         <a routerLink="/productos">Volver</a>
     </div>
-    <div class="row ">
-        <div class="col-md-6">
-            <img [src]="producto.imgUrl" alt="" height="400">
+    <div class="row info align-items-center">
+        <div class="col-md-6 p-0">
+            <img [src]="producto.imgUrl" alt="" style="width: 70%;">
         </div>
         <div class="col-md-6 mb-4">
-            <h1 class="mt-4">Nombre: {{producto.name}}</h1>
-            <h4 class="mt-4">Precio: {{producto.price}}$</h4>
+            <span class="promo" *ngIf="producto.hasDiscount">{{producto.percentageDiscount}}% de descuento</span>
+            <h1 class="mt-4">{{producto.name}}</h1>
+            <h4 class="mt-4" *ngIf="!producto.hasDiscount">Precio: {{producto.price}}$</h4>
+            <h4 class="mt-4" *ngIf="producto.hasDiscount"><del class="me-1">{{producto.price}}</del> 
+                {{producto.price - (producto.price*producto.percentageDiscount)/100}}$</h4>
             <p class="mt-4">{{producto.description}}</p>
             <h5 class="mt-4">Unidades disponibles: {{producto.stock - obtenerStockContandoCarrito(producto.code)}} </h5>
             <h6 class="mt-4">Talla: {{producto.size}}</h6>

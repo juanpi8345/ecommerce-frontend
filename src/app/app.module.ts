@@ -18,6 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -34,6 +35,7 @@ import { MisComprasComponent } from './pages/mis-compras/mis-compras.component';
 import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.component';
+import { VerificarUsuarioComponent } from './pages/verificar-usuario/verificar-usuario.component';
 
 
 
@@ -55,6 +57,7 @@ import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.componen
     VerCompraComponent,
     VentasComponent,
     VerUsuariosComponent,
+    VerificarUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.componen
     MatDividerModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatMenuModule,
     HttpClientModule,
     FormsModule,
     

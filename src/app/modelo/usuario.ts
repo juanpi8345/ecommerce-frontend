@@ -4,4 +4,5 @@ export class Usuario {
     dni:string;
     password:string;
     email:string;
+    verificated:boolean;
 }

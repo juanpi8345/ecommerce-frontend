@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Compra } from 'src/app/modelo/compra';
+import { Producto } from 'src/app/modelo/producto';
 import { CompraService } from 'src/app/services/compra.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
@@ -138,12 +139,13 @@ export class CarritoComponent {
   }
 
   obtenerTotal() {
-    let productos = this.obtenerProductosCarrito();
+    let productos:Producto[] = this.obtenerProductosCarrito();
     let total = 0;
     for (let p of productos) {
-      total += p.price;
+      total += p.price - (p.price*p.percentageDiscount)/100;
     }
     return total;
   }
+
 
 }

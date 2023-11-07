@@ -16,21 +16,25 @@ export class EditarProductoComponent {
 
   constructor(private productoService:ProductosService, private router:Router, private route:ActivatedRoute
     ,private snack:MatSnackBar){
-      this.producto.size = "S"
     }
 
  
 
   ngOnInit():void{
+    
     this.code = this.route.snapshot.params['codigo'];
     this.productoService.obtenerProducto(this.code).subscribe((producto:Producto)=>{
       this.producto = producto;
+      this.producto.hasDiscount = false;
+      this.producto.percentageDiscount = 0;
     },()=>{
       this.snack.open("Error al cargar el producto","Aceptar",{
         duration:3000
       })
     });
+
   }
+  
 
   validarCampos(...campos): boolean {
     for (const campo of campos) {
@@ -47,6 +51,20 @@ export class EditarProductoComponent {
         duration: 3000
       });
       return;
+    }
+    if (this.producto.hasDiscount) {
+      if (!this.validarCampos(this.producto.percentageDiscount)) {
+        this.snack.open("Por favor ingrese un porcentaje", "Aceptar", {
+          duration: 3000
+        });
+        return;
+      }
+      if(this.producto.percentageDiscount <= 0 || this.producto.percentageDiscount > 100){
+        this.snack.open("Porcentaje incorrecto", "Aceptar", {
+          duration: 3000
+        });
+        return;
+      }
     }
     Swal.fire({
       title: 'Editar producto',

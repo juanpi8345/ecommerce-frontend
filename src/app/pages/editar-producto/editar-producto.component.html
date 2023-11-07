@@ -36,11 +36,11 @@
                 <mat-form-field class="w-100">
                   <mat-label>Talla</mat-label>
                    <mat-select [(value)]="producto.size">
-                       <mat-option value="s">S</mat-option>
-                       <mat-option value="m">M</mat-option>
-                       <mat-option value="l">L</mat-option>
-                       <mat-option value="xl">XL</mat-option>
-                       <mat-option>Consulta</mat-option>
+                       <mat-option value="S">S</mat-option>
+                       <mat-option value="M">M</mat-option>
+                       <mat-option value="L">L</mat-option>
+                       <mat-option value="XL">XL</mat-option>
+                       <mat-option value="Consultar">Consultar</mat-option>
                    </mat-select>
                 </mat-form-field>
             </div> 
@@ -53,7 +53,18 @@
                   </mat-form-field>
             </div>
         </div>
-        <div class="row mb-5">
+        <div class="row">
+            <div class="col-md-2">
+                <mat-slide-toggle (toggleChange)="producto.hasDiscount = !producto.hasDiscount" ><span class="ms-1">Tiene descuento</span></mat-slide-toggle>
+            </div>
+            <div class="col-md-3 aparecer" *ngIf="producto.hasDiscount">
+                <mat-form-field class="w-100" >
+                    <mat-label>Porcentaje de descuento</mat-label>
+                    <input type="number" matInput required  name="descuento" [(ngModel)]="producto.percentageDiscount">
+                </mat-form-field> 
+            </div>
+        </div>
+        <div class="row mb-5 mt-4">
             <div class="col-md-4">
                 <button type="submit" class="btn btn-verde">Editar producto</button>
                 <a class="btn btn-outline-verde ms-2" (click)="limpiarCampos()">Limpiar campos</a>

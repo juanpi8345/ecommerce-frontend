@@ -15,6 +15,7 @@ import { VerCompraComponent } from './pages/ver-compra/ver-compra.component';
 import { AdminAuthGuard } from './services/admin-auth.guard';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { VerUsuariosComponent } from './pages/ver-usuarios/ver-usuarios.component';
+import { VerificarUsuarioComponent } from './pages/verificar-usuario/verificar-usuario.component';
 
 const routes: Routes = [
   {path: '', redirectTo:"nosotros", pathMatch:'full'},
@@ -23,7 +24,7 @@ const routes: Routes = [
   {path:'agregar-producto',component:AgregarProductoComponent,canActivate:[AuthGuard]},
   {path:'editar-producto/:codigo',component:EditarProductoComponent,canActivate:[AuthGuard]},
   {path:'ver-producto/:codigo',component:VerProductoComponent},
-  {path:'contacto',component:ContactoComponent},
+  {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
   {path:'carrito',component:CarritoComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'registrarse',component:RegistrarseComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:'ver-compra/:id',component:VerCompraComponent,canActivate:[AuthGuard]},
   {path:'ventas',component:VentasComponent,canActivate:[AdminAuthGuard]},
   {path:'usuarios',component:VerUsuariosComponent,canActivate:[AdminAuthGuard]},
+  {path:'verificar-usuario',component:VerificarUsuarioComponent},
   {path: '**',redirectTo:'',pathMatch:'full'}
 ];
 

@@ -28,6 +28,10 @@ export class LoginComponent {
   iniciarSesion():void{
     if(this.validarCampos(this.usuarioDTO.dni, this.usuarioDTO.password)){
       this.loginService.Login(this.usuarioDTO).subscribe((usuario:Usuario)=>{
+        if(!usuario.verificated){
+          this.router.navigate(['/verificar-usuario']);
+          return;
+        }
           this.loginService.setUser(usuario);
           this.router.navigate(['productos']);
       },()=>{

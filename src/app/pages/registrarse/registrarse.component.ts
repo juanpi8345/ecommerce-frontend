@@ -78,7 +78,7 @@ export class RegistrarseComponent {
           this.userService.existeEmail(this.usuario.email).subscribe((existeEmail:boolean)=>{
             if(!existeEmail){
               this.loginService.registrarse(this.usuario).subscribe(()=>{
-                this.router.navigate(['/login']);
+                this.router.navigate(['/verificar-usuario']);
               })
             }else{
               this.snack.open("Ese email ya esta registrado","Aceptar",{
