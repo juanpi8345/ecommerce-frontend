@@ -27,9 +27,9 @@ export class ProductosComponent {
   ngOnInit(): void {
     if(this.loginService.getUser() != undefined)
       this.getUserRol();
-  
-    this.obtenerProductos(0);
+      this.obtenerProductos(0);
   }
+
 
   public getUserRol() {
     this.userService.obtenerRol(this.loginService.getUser().dni).subscribe((role: any) => {

@@ -18,8 +18,8 @@
             <input type="text" matInput name="query" [(ngModel)]="query" (input)="buscarProductos()">
         </mat-form-field>
     </div>
-    <div class="row text-center justify-content-center">
-        <div class="col-md-4 mt-5 p-2 aparecer" *ngFor="let producto of productos">
+    <div class="row text-center justify-content-center" *ngIf="productos != null">
+        <div class="col-md-4 mt-5 p-2 aparecer" *ngFor="let producto of productos" >
             <div class="card carta-producto">
                 <div class="img-container">
                   <img  [src]="producto.imgUrl">
