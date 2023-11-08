@@ -11,7 +11,8 @@ export class LoginService {
 
   constructor(private http:HttpClient,private userService:UserService,) { }
 
-  private apiUrl:string = "http://localhost:81/user-service/user/";
+  //private apiUrl:string = "http://localhost:81/user-service/user/";
+  private apiUrl:string = "http://localhost:8080/user/";
 
   public Login(usuarioDTO:UsuarioDTO){
     return this.http.post(this.apiUrl+ "login",usuarioDTO);

@@ -9,7 +9,8 @@ export class CompraService {
 
   constructor(private http:HttpClient) { }
 
-  private apiUrl : string = "http://localhost:81/sales-service/sales/";
+  //private apiUrl : string = "http://localhost:81/sales-service/sales/";
+  private apiUrl : string = "http://localhost:8080/sales/";
 
   public registrarCompra(compra:Compra){
     return this.http.post(this.apiUrl + "add",compra);

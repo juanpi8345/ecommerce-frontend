@@ -9,8 +9,11 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  private apiUrl:string = "http://localhost:81/user-service/user/";
-  private apiUrlAdmin:string = "http://localhost:81/user-service/admin/";
+  //private apiUrl:string = "http://localhost:81/user-service/user/";
+  //private apiUrlAdmin:string = "http://localhost:81/user-service/admin/";
+
+  private apiUrl:string = "http://localhost:8080/user/";
+  private apiUrlAdmin:string = "http://localhost:8080/admin/";
 
 
   public obtenerRol(dni:string){
