@@ -12,8 +12,8 @@ export class UserService {
   //private apiUrl:string = "http://localhost:81/user-service/user/";
   //private apiUrlAdmin:string = "http://localhost:81/user-service/admin/";
 
-  private apiUrl:string = "http://localhost:8080/user/";
-  private apiUrlAdmin:string = "http://localhost:8080/admin/";
+  private apiUrl:string = "https://clothingstore-foypgsk3.b4a.run/user/";
+  private apiUrlAdmin:string = "https://clothingstore-foypgsk3.b4a.run/admin/";
 
 
   public obtenerRol(dni:string){

@@ -10,7 +10,7 @@ export class ProductosService {
   constructor(private http:HttpClient) { }
 
   //private apiUrl:String = "http://localhost:81/products-service/products/";
-  private apiUrl:String = "http://localhost:8080/products/";
+  private apiUrl:String = "https://clothingstore-foypgsk3.b4a.run/products/";
 
   public obtenerProductos(page:Optional,ordenamiento:Optional){
     if(page== null || undefined || ordenamiento == null || ordenamiento == undefined){
